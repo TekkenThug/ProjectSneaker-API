@@ -1,6 +1,5 @@
-require('dotenv').config();
-const express = require('express')
-const router = express.Router()
+import express from 'express';
+const router = express.Router();
 
 router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', process.env.APP_URL);
@@ -17,4 +16,4 @@ router.get('/api/sneakers', function (req, res) {
         });
 })
 
-module.exports = router
+export default router;

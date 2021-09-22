@@ -1,11 +1,14 @@
-const express = require('express');
+import * as dotenv from 'dotenv';
+import express from 'express';
+import routes from './router.js';
+
+dotenv.config();
+
 const app = express();
 
-const routes = require('./router');
+app.use(routes);
 
 app.listen(process.env.API_PORT, () => {
     console.log('Hello, server is running!')
 });
-
-app.use(routes);
 
