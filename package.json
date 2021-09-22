@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/TekkenThug/ProjectSneaker-API/issues"
   },
-  "homepage": "https://github.com/TekkenThug/ProjectSneaker-API#readme"
+  "homepage": "https://github.com/TekkenThug/ProjectSneaker-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
