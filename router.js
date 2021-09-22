@@ -7,8 +7,7 @@ router.use((req, res, next) => {
     next();
 });
 
-router.post('/sneakers', (req, res) => {
-    SneakerController.postSneakers(req, res);
-});
+router.get('/sneakers', SneakerController.getSneakers);
+router.post('/sneakers', SneakerController.postSneakers);
 
 export default router;

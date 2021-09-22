@@ -1,10 +1,21 @@
-import Sneaker from "../models/Sneaker.js";
+import SneakerService from "../services/sneakers/SneakerService.js";
 
 class SneakerController {
-    async postSneakers(req, res) {
-        const pair = await Sneaker.create(req.body);
+    async getSneakers(req, res) {
+        try {
+            res.json(await SneakerService.getSneakers())
+        } catch (e) {
+            res.json(e)
+        }
+    }
 
-        res.json(pair)
+    async postSneakers(req, res) {
+        try {
+            await SneakerService.createSneakers(req.body);
+            res.status(200).json('good');
+        } catch (e) {
+            res.json(e);
+        }
     }
 }
 
