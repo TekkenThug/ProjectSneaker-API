@@ -1,4 +1,5 @@
 import express from 'express';
+import SneakerController from './app/controllers/SneakerController.js';
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -6,14 +7,8 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get('/api/sneakers', function (req, res) {
-    res.send(
-        {
-            image: '/images/tmp-sneaker.jpeg',
-            name: 'Adidas Streetball',
-            vendorCode: '123',
-            price: 12000
-        });
-})
+router.post('/sneakers', (req, res) => {
+    SneakerController.postSneakers(req, res);
+});
 
 export default router;
