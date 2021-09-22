@@ -11,7 +11,7 @@ class SneakerController {
 
     async postSneakers(req, res) {
         try {
-            await SneakerService.createSneakers(req.body);
+            await SneakerService.createSneakers(req.body, req.files.picture);
             res.status(200).json('good');
         } catch (e) {
             res.json(e);

@@ -1,12 +1,15 @@
 import Sneaker from "../../models/Sneaker.js";
+import FileHandler from "../FileHandler.js";
 
 class SneakerService {
     async getSneakers(id) {
        return Sneaker.findById(id);
     }
 
-    async createSneakers(data) {
-        await Sneaker.create(data);
+    async createSneakers(data, image) {
+        const imageName = FileHandler.saveFile(image);
+
+        await Sneaker.create({...data, picture: imageName});
     }
 
     async updateSneakers(id, data) {

@@ -16,6 +16,9 @@ const Sneaker = new mongoose.Schema({
     vendorCode: {
         type: String,
         required: true,
+    },
+    picture: {
+        type: String,
     }
 })
 
