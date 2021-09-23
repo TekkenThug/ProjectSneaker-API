@@ -1,13 +1,15 @@
 import * as dotenv from 'dotenv';
 import mongoose from "mongoose";
+import cors from 'cors';
 import express from 'express';
-import fileUpload from'express-fileupload';
+import fileUpload from 'express-fileupload';
 import routes from './router.js';
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors);
 app.use(express.json());
 app.use(express.static('public'));
 app.use(fileUpload({}));
