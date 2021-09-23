@@ -3,11 +3,6 @@ import SneakerController from './app/controllers/SneakerController.js';
 
 const router = express.Router();
 
-router.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', process.env.APP_URL);
-    next();
-});
-
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
 router.post('/sneakers', SneakerController.postSneakers);
