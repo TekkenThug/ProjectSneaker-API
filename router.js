@@ -1,5 +1,6 @@
 import express from 'express';
 import SneakerController from './app/controllers/SneakerController.js';
+
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -7,6 +8,7 @@ router.use((req, res, next) => {
     next();
 });
 
+/** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
 router.post('/sneakers', SneakerController.postSneakers);
 router.put('/sneakers/:id', SneakerController.updateSneakers);
