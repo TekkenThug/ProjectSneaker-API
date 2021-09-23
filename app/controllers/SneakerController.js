@@ -3,6 +3,7 @@ import SneakerService from "../services/sneakers/SneakerService.js";
 class SneakerController {
     async getSneakers(req, res) {
         try {
+            console.log(req.params.id);
             res.json(await SneakerService.getSneakers(req.params.id))
         } catch (e) {
             res.json(e)

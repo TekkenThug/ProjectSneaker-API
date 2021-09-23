@@ -7,7 +7,7 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get('/sneakers/:id', SneakerController.getSneakers);
+router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
 router.post('/sneakers', SneakerController.postSneakers);
 router.put('/sneakers/:id', SneakerController.updateSneakers);
 router.delete('/sneakers/:id', SneakerController.deleteSneakers);

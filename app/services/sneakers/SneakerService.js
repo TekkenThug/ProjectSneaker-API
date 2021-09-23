@@ -3,7 +3,11 @@ import FileHandler from "../FileHandler.js";
 
 class SneakerService {
     async getSneakers(id) {
-       return Sneaker.findById(id);
+        if (!id) {
+            return Sneaker.find();
+        }
+
+        return Sneaker.findById(id);
     }
 
     async createSneakers(data, image) {
