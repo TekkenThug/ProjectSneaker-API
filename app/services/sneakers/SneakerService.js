@@ -2,12 +2,21 @@ import Sneaker from "../../models/Sneaker.js";
 import FileHandler from "../FileHandler.js";
 
 class SneakerService {
-    async getSneakers(id) {
+    async getSneakers(id, pathToFolder) {
         if (!id) {
-            return Sneaker.find();
+            const sneakers = await Sneaker.find();
+
+            sneakers.forEach(pair => {
+               pair['picture'] = `${pathToFolder}/${pair['picture']}`;
+            });
+
+            return sneakers;
         }
 
-        return Sneaker.findById(id);
+        const sneakers = await Sneaker.findById(id);
+        sneakers['picture'] = `${pathToFolder}/${sneakers['picture']}`;
+
+        return sneakers;
     }
 
     async createSneakers(data, image) {

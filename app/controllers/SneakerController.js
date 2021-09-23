@@ -1,10 +1,10 @@
 import SneakerService from "../services/sneakers/SneakerService.js";
+import { generatePath } from "../../utils.js";
 
 class SneakerController {
     async getSneakers(req, res) {
         try {
-            console.log(req.params.id);
-            res.json(await SneakerService.getSneakers(req.params.id))
+            res.json(await SneakerService.getSneakers(req.params.id, generatePath()))
         } catch (e) {
             res.json(e)
         }
