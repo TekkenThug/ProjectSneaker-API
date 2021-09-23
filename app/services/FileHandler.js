@@ -4,7 +4,7 @@ import * as path from 'path';
 class FileHandler {
     saveFile(file) {
         try {
-            const fileName = `${uuid()}.${file.mimetype.split('/')[1]}`;
+            const fileName = `${uuid()}${path.extname(file.name)}`;
             const filePath = path.resolve('public', fileName);
 
             file.mv(filePath);
