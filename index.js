@@ -18,7 +18,7 @@ app.use('/api', routes);
 const startApp = async () => {
     await mongoose.connect(process.env.API_MONGO_CONNECT);
 
-    app.listen(process.env.API_PORT, () => {
+    app.listen(process.env.port || 3000, () => {
         console.log('Hello, server is running!')
     });
 }
