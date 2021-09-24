@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors);
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(fileUpload({}));
@@ -18,7 +18,7 @@ app.use('/api', routes);
 const startApp = async () => {
     await mongoose.connect(process.env.API_MONGO_CONNECT);
 
-    app.listen(process.env.port || 3000, () => {
+    app.listen(process.env.API_PORT || 3000, () => {
         console.log('Hello, server is running!')
     });
 }
