@@ -4,7 +4,13 @@ import { generatePathForStatic } from "../../utils.js";
 class SneakerController {
     async getSneakers(req, res) {
         try {
-            res.json(await SneakerService.getSneakers(req.params.id, generatePathForStatic()))
+            res.json(
+                await SneakerService.getSneakers(
+                    req.params.id,
+                    generatePathForStatic(),
+                    req.query
+                )
+            )
         } catch (e) {
             res.json(e)
         }
