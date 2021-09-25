@@ -2,21 +2,26 @@ import Sneaker from "../../models/Sneaker.js";
 import FileHandler from "../FileHandler.js";
 
 class SneakerService {
-    async getSneakers(id, pathToFolder) {
+    _prepareImageLink(sneakers, pathToFolder) {
+        sneakers.forEach(pair => {
+            pair['picture'] = `${pathToFolder}/${pair['picture']}`;
+        });
+
+        return sneakers;
+    }
+
+    async getSneakers(id, pathToFolder, searchParams = {}) {
         if (!id) {
-            const sneakers = await Sneaker.find();
+            const sneakers = await Sneaker.find({
+                model: new RegExp(searchParams.model, 'gi')
+            }).limit(Number.parseInt(searchParams.limit))
 
-            sneakers.forEach(pair => {
-               pair['picture'] = `${pathToFolder}/${pair['picture']}`;
-            });
-
-            return sneakers;
+            return this._prepareImageLink(sneakers, pathToFolder);
         }
 
         const sneakers = await Sneaker.findById(id);
-        sneakers['picture'] = `${pathToFolder}/${sneakers['picture']}`;
 
-        return sneakers;
+        return this._prepareImageLink(sneakers, pathToFolder);
     }
 
     async createSneakers(data, image) {
