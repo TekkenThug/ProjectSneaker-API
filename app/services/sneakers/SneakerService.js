@@ -1,5 +1,6 @@
 import Sneaker from "../../models/Sneaker.js";
 import FileHandler from "../FileHandler.js";
+import { formatDate } from "../../../utils.js";
 
 class SneakerService {
     _prepareImageLink(sneakers, pathToFolder) {
@@ -26,6 +27,8 @@ class SneakerService {
 
     async createSneakers(data, image) {
         const imageName = FileHandler.saveFile(image);
+
+        data.releaseDate = formatDate(data.releaseDate);
 
         await Sneaker.create({...data, picture: imageName});
     }
