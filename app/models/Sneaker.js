@@ -17,9 +17,14 @@ const Sneaker = new mongoose.Schema({
         type: String,
         required: true,
     },
+    releaseDate: {
+        type: String,
+        required: false,
+    },
     picture: {
         type: String,
-    }
+        required: true,
+    },
 })
 
 export default mongoose.model('Sneaker', Sneaker)
