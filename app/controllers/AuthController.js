@@ -4,10 +4,10 @@ class AuthController {
     async registerUser(req, res) {
         try {
             await Auth.register(req.body);
-            res.json('User is register!');
+            res.json('User registered successfully');
         } catch (e) {
-            console.log(e);
-            res.json(e.message);
+            console.log(e.message);
+            res.status(500).json(e.message);
         }
     }
 }
