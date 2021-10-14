@@ -23,9 +23,9 @@ class Auth {
        });
 
        if (potentialUser) {
-         bcrypt.compare(data.password, potentialUser.passwordHash, (err, result) => {
-           if (!result) throw new Error('Incorrect password');
-         });
+         const match = await bcrypt.compare(data.password, potentialUser.passwordHash);
+
+         if (!match) throw new Error('Incorrect password');
        } else {
          throw new Error('User with this email not found');
        }

@@ -13,6 +13,7 @@ class AuthController {
     async authentication(req, res) {
         try {
             await Auth.authenticateUser(req.body);
+            res.json('User log in!');
         } catch (e) {
             res.status(500).json(e.message);
         }
