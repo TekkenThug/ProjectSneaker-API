@@ -25,6 +25,16 @@ export const isNewUser = async (data) => {
   ], data);
 }
 
+export const isPair = async (data) => {
+  return await validate([
+    check('model').notEmpty().withMessage('Model is empty'),
+    check('colorway').notEmpty().withMessage('Colorway is empty'),
+    check('vendorCode').notEmpty().withMessage('Vendor code is empty'),
+    check('price').notEmpty().withMessage('Price is empty').isNumeric().withMessage('Price is not numeric'),
+    check('releaseDate').notEmpty().withMessage('Date is empty').isDate({ format: 'YYYY-MM-dd'}).withMessage('Date field is not date format'),
+  ], data);
+}
+
 export default (rule) => {
   return async (req, res, next) => {
     const answer = await rule(req);

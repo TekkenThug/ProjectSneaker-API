@@ -1,5 +1,5 @@
 import express from 'express';
-import validate, { isNewUser } from './app/middlewares/validation.js';
+import validate, { isNewUser, isPair } from './app/middlewares/validation.js';
 
 /** Controllers */
 import AuthController from './app/controllers/AuthController.js';
@@ -12,7 +12,7 @@ router.post('/auth/register', validate(isNewUser), AuthController.registerUser);
 
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
-router.post('/sneakers', SneakerController.postSneakers);
+router.post('/sneakers', validate(isPair), SneakerController.postSneakers);
 router.put('/sneakers/:id', SneakerController.updateSneakers);
 router.delete('/sneakers/:id', SneakerController.deleteSneakers);
 
