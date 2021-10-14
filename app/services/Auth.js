@@ -16,6 +16,20 @@ class Auth {
             throw new Error('User with this email is registered');
         }
      }
+
+     async authenticateUser(data) {
+       const potentialUser = await User.findOne({
+         email: data.email,
+       });
+
+       if (potentialUser) {
+         bcrypt.compare(data.password, potentialUser.passwordHash, (err, result) => {
+           if (!result) throw new Error('Incorrect password');
+         });
+       } else {
+         throw new Error('User with this email not found');
+       }
+     }
 }
 
 export default new Auth();
