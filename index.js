@@ -23,7 +23,7 @@ const startApp = async () => {
     });
 }
 
-startApp();
+await startApp();
 
 
 
