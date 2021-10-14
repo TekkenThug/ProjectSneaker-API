@@ -38,7 +38,7 @@ export const isPair = async (data) => {
 export default (rule) => {
   return async (req, res, next) => {
     const answer = await rule(req);
-    return Array.isArray(answer) ? res.status(400).json(answer) : next()
+    return answer ? res.status(400).json(answer) : next()
   }
 }
 
