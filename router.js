@@ -1,4 +1,5 @@
 import express from 'express';
+import { isNewUser } from './app/middlewares/validation.js';
 
 /** Controllers */
 import AuthController from './app/controllers/AuthController.js';
@@ -7,7 +8,7 @@ import SneakerController from './app/controllers/SneakerController.js';
 const router = express.Router();
 
 /** Auth Routes */
-router.post(['/auth/register'], AuthController.registerUser);
+router.post(['/auth/register'], isNewUser, AuthController.registerUser);
 
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
