@@ -8,7 +8,7 @@ import SneakerController from './app/controllers/SneakerController.js';
 const router = express.Router();
 
 /** Auth Routes */
-router.post(['/auth/register'], isNewUser, AuthController.registerUser);
+router.post('/auth/register', isNewUser, AuthController.registerUser);
 
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
