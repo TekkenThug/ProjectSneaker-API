@@ -25,10 +25,13 @@ class AuthController {
         try {
             const { token } = req.body;
 
-            if (!token) res.status(403).json('Forbidden');
-
-            const tokenData = await Auth.checkUser(req.body.token);
-            res.status(200).json(tokenData);
+            if (token) {
+                const tokenData = await Auth.checkUser(req.body.token);
+                res.status(200).json(tokenData);
+            }
+            else {
+                res.status(403).json('Forbidden');
+            }
         } catch (e) {
             res.status(500).json(e.message);
         }
