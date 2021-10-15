@@ -1,5 +1,5 @@
 import User from '../models/User.js';
-import { generateAccessToken } from '../libs/jwt.js';
+import { generateAccessToken, checkAccessToken } from '../libs/jwt.js';
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = 10;
@@ -29,11 +29,21 @@ class Auth {
          if (!match) throw new Error('Incorrect password');
 
          return await generateAccessToken({
-           user: potentialUser.email
+           role: potentialUser.permissionID,
          });
        } else {
          throw new Error('User with this email not found');
        }
+     }
+
+     async checkUser(token) {
+        const potentialTokenData = await checkAccessToken(token);
+
+        if (!potentialTokenData.role) throw new Error('Forbidden');
+
+        return {
+          role: potentialTokenData.role
+        };
      }
 }
 
