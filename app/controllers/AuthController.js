@@ -14,7 +14,7 @@ class AuthController {
         try {
             const jwtKey = await Auth.authenticateUser(req.body);
             res.json({
-                jwt: jwtKey,
+                token: jwtKey,
             });
         } catch (e) {
             res.status(500).json(e.message);
