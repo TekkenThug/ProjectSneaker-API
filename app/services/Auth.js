@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import { generateAccessToken } from '../libs/jwt.js';
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = 10;
@@ -26,6 +27,10 @@ class Auth {
          const match = await bcrypt.compare(data.password, potentialUser.passwordHash);
 
          if (!match) throw new Error('Incorrect password');
+
+         return await generateAccessToken({
+           user: potentialUser.email
+         });
        } else {
          throw new Error('User with this email not found');
        }

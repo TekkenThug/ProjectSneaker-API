@@ -12,8 +12,10 @@ class AuthController {
 
     async authentication(req, res) {
         try {
-            await Auth.authenticateUser(req.body);
-            res.json('User log in!');
+            const jwtKey = await Auth.authenticateUser(req.body);
+            res.json({
+                jwt: jwtKey,
+            });
         } catch (e) {
             res.status(500).json(e.message);
         }
