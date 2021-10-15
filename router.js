@@ -10,6 +10,7 @@ const router = express.Router();
 /** Auth Routes */
 router.post('/auth/register', validate(isNewUser), AuthController.registerUser);
 router.post('/auth/login', AuthController.authentication);
+router.post('/auth/check-in', AuthController.checkAuth);
 
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
