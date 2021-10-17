@@ -3,7 +3,7 @@ import FileHandler from "../FileHandler.js";
 import { formatDate, prepareImageLink } from "../../../utils.js";
 
 class SneakerService {
-    async getSneakers(id, pathToFolder, searchParams = {}) {
+    async getSneakers(id, searchParams = {}) {
         if (!id) {
             const { model, limit } = searchParams;
 
@@ -12,12 +12,12 @@ class SneakerService {
                 isApproved: true,
             }).limit(Number.parseInt(limit));
 
-            return prepareImageLink(sneakers, pathToFolder);
+            return prepareImageLink(sneakers);
         }
 
         const sneakers = await Sneaker.findById(id).where({ isApproved: true });
 
-        return prepareImageLink(sneakers, pathToFolder);
+        return prepareImageLink(sneakers);
     }
 
     async createSneakers(data, image) {

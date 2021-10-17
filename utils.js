@@ -19,12 +19,11 @@ export const formatDate = (date, options = {}) => {
  * Returns sneakers pairs with full image path
  *
  * @param {array} sneakers
- * @param {string} pathToFolder
  * @returns {array}
  */
-export const prepareImageLink = (sneakers, pathToFolder) => {
+export const prepareImageLink = (sneakers) => {
     sneakers.forEach(pair => {
-        pair['picture'] = `${pathToFolder}/${pair['picture']}`;
+        pair['picture'] = `${generatePathForStatic()}/${pair['picture']}`;
     });
 
     return sneakers;
