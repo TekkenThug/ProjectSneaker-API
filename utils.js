@@ -28,3 +28,13 @@ export const prepareImageLink = (sneakers) => {
 
     return sneakers;
 }
+
+/**
+ * Returned array, where id field is converted ObjectID (from MongoDB)
+ *
+ * @param {array} items - items for adding id
+ * @returns {array} Array with id fields
+ */
+export const serializeObjectId = (items) => {
+    return items.map((obj) => ({ ...obj.toJSON(), id: obj._id.toString()}));
+}
