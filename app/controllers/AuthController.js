@@ -26,13 +26,21 @@ class AuthController {
             const { token } = req.body;
 
             if (token) {
-                const tokenData = await Auth.checkUser(req.body.token);
-                res.locals.tokenData = tokenData;
+                res.locals.tokenData = await Auth.checkUser(req.body.token);
                 next();
             }
             else {
                 res.status(403).json('Forbidden');
             }
+        } catch (e) {
+            res.status(500).json(e.message);
+        }
+    }
+
+    async logout(req, res) {
+        try {
+            await Auth.logoutUser();
+            res.json('Logout is successful');
         } catch (e) {
             res.status(500).json(e.message);
         }
