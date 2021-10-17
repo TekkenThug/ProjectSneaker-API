@@ -23,5 +23,6 @@ router.delete('/sneakers/:id', SneakerController.deleteSneakers);
 
 /** Admin Routes */
 router.get('/admin/sneakers', AdminController.getSneakers);
+router.post('/admin/sneakers/resolve', AdminController.resolveSneakersApplication);
 
 export default router;
