@@ -4,7 +4,7 @@ import validate, { isNewUser, isPair } from './app/middlewares/validation.js';
 /** Controllers */
 import AuthController from './app/controllers/AuthController.js';
 import SneakerController from './app/controllers/SneakerController.js';
-import adminController from "./app/controllers/adminController.js";
+import AdminController from "./app/controllers/AdminController.js";
 
 const router = express.Router();
 
@@ -22,6 +22,6 @@ router.put('/sneakers/:id', SneakerController.updateSneakers);
 router.delete('/sneakers/:id', SneakerController.deleteSneakers);
 
 /** Admin Routes */
-router.get('/admin/sneakers', AuthController.checkAuth, adminController.getSneakers);
+router.get('/admin/sneakers', AdminController.getSneakers);
 
 export default router;
