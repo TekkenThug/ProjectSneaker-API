@@ -1,10 +1,11 @@
 import Sneaker from "../../models/Sneaker.js";
+import { prepareImageLink } from "../../../utils.js";
 
 class AdminService {
   async getNotApprovedSneakers() {
-    return Sneaker.find({
+    return prepareImageLink(await Sneaker.find({
       isApproved: false,
-    });
+    }));
   }
 }
 
