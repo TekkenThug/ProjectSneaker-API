@@ -11,6 +11,7 @@ const router = express.Router();
 /** Auth Routes */
 router.post('/auth/register', validate(isNewUser), AuthController.registerUser);
 router.post('/auth/login', AuthController.authentication);
+router.post('/auth/logout', AuthController.logout);
 router.post('/auth/check-in', AuthController.checkAuth, (req, res) => {
   res.status(200).json(res.locals.tokenData);
 });
