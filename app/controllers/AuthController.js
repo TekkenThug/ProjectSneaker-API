@@ -21,13 +21,14 @@ class AuthController {
         }
     }
 
-    async checkAuth(req, res) {
+    async checkAuth(req, res, next) {
         try {
             const { token } = req.body;
 
             if (token) {
                 const tokenData = await Auth.checkUser(req.body.token);
-                res.status(200).json(tokenData);
+                res.locals.tokenData = tokenData;
+                next();
             }
             else {
                 res.status(403).json('Forbidden');
