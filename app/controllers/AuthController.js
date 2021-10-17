@@ -39,7 +39,8 @@ class AuthController {
 
     async logout(req, res) {
         try {
-            await Auth.logoutUser();
+            // TODO: fictive method
+            await Auth.checkUser();
             res.json('Logout is successful');
         } catch (e) {
             res.status(500).json(e.message);
