@@ -13,10 +13,12 @@ class SneakerService {
 
     async getSneakers(id, pathToFolder, searchParams = {}) {
         if (!id) {
+            const { model, limit } = searchParams;
+
             const sneakers = await Sneaker.find({
-                model: new RegExp(searchParams.model, 'gi'),
+                model: new RegExp(model, 'gi'),
                 isApproved: true,
-            }).limit(Number.parseInt(searchParams.limit))
+            }).limit(Number.parseInt(limit));
 
             return this._prepareImageLink(sneakers, pathToFolder);
         }
