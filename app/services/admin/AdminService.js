@@ -9,6 +9,16 @@ class AdminService {
 
     return serializeObjectId(pairWithoutId);
   }
+
+  async resolveSneakersApplication(id, resolve) {
+    if (resolve) {
+      await Sneaker.findByIdAndUpdate(id, {
+        isApproved: true,
+      });
+    } else {
+      await Sneaker.findByIdAndDelete(id);
+    }
+  }
 }
 
 export default new AdminService();
