@@ -25,6 +25,10 @@ const Sneaker = new mongoose.Schema({
         type: String,
         required: false,
     },
+    isApproved: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 export default mongoose.model('Sneaker', Sneaker)
