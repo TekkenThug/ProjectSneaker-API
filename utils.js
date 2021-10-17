@@ -14,3 +14,18 @@ export const generatePathForStatic = () => {
 export const formatDate = (date, options = {}) => {
     return new Date(date).toLocaleDateString('ru-RU', options);
 };
+
+/**
+ * Returns sneakers pairs with full image path
+ *
+ * @param {array} sneakers
+ * @param {string} pathToFolder
+ * @returns {array}
+ */
+export const prepareImageLink = (sneakers, pathToFolder) => {
+    sneakers.forEach(pair => {
+        pair['picture'] = `${pathToFolder}/${pair['picture']}`;
+    });
+
+    return sneakers;
+}

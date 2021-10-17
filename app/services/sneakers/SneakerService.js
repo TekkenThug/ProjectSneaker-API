@@ -1,16 +1,8 @@
 import Sneaker from "../../models/Sneaker.js";
 import FileHandler from "../FileHandler.js";
-import { formatDate } from "../../../utils.js";
+import { formatDate, prepareImageLink } from "../../../utils.js";
 
 class SneakerService {
-    _prepareImageLink(sneakers, pathToFolder) {
-        sneakers.forEach(pair => {
-            pair['picture'] = `${pathToFolder}/${pair['picture']}`;
-        });
-
-        return sneakers;
-    }
-
     async getSneakers(id, pathToFolder, searchParams = {}) {
         if (!id) {
             const { model, limit } = searchParams;
@@ -20,12 +12,12 @@ class SneakerService {
                 isApproved: true,
             }).limit(Number.parseInt(limit));
 
-            return this._prepareImageLink(sneakers, pathToFolder);
+            return prepareImageLink(sneakers, pathToFolder);
         }
 
         const sneakers = await Sneaker.findById(id).where({ isApproved: true });
 
-        return this._prepareImageLink(sneakers, pathToFolder);
+        return prepareImageLink(sneakers, pathToFolder);
     }
 
     async createSneakers(data, image) {
