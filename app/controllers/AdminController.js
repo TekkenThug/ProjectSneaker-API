@@ -8,6 +8,15 @@ class AdminController {
       res.send(500).json(e.message);
     }
   }
+
+  async resolveSneakersApplication(req, res) {
+    try {
+      const { id, resolve } = req.body;
+      await AdminService.resolveSneakersApplication(id, resolve);
+    } catch (e) {
+      res.send(500).json(e.message)
+    }
+  }
 }
 
 export default new AdminController();
