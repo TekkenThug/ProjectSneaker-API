@@ -1,0 +1,29 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "plugin:import/recommended",
+        "airbnb-base",
+        "plugin:jsdoc/recommended"
+    ],
+    "parserOptions": {
+        "parser": "babel-eslint"
+    },
+    "rules": {
+        "import/extensions": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": "warn",
+        "arrow-body-style": "off",
+        "no-param-reassign": "off",
+        "prefer-destructuring": "off",
+        "class-methods-use-this": 0,
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ]
+    }
+}
