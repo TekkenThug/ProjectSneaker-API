@@ -1,6 +1,6 @@
 import {
   isNewUser,
-  isPair
+  isPair,
 } from './validation.js';
 
 describe('validation', () => {
@@ -11,8 +11,8 @@ describe('validation', () => {
           email: 'vadim@gmail.com',
           nickname: 'tekkenthug',
           password: 'Biboran228',
-          repeatPassword: 'Biboran228'
-        }
+          repeatPassword: 'Biboran228',
+        },
       };
       const expected = true;
 
@@ -27,8 +27,8 @@ describe('validation', () => {
           email: 'vadim@',
           nickname: 'tekkenthug',
           password: 'Biboran228',
-          repeatPassword: 'Biboran228'
-        }
+          repeatPassword: 'Biboran228',
+        },
       };
       const expected = 'Email is not valid';
 
@@ -43,8 +43,8 @@ describe('validation', () => {
           email: 'vadim@gmail.com',
           nickname: '',
           password: 'Biboran228',
-          repeatPassword: 'Biboran228'
-        }
+          repeatPassword: 'Biboran228',
+        },
       };
       const expected = 'Nickname is not exist';
 
@@ -59,8 +59,8 @@ describe('validation', () => {
           email: 'vadim@gmail.com',
           nickname: 'tekkenthug',
           password: 'Biboran',
-          repeatPassword: 'Biboran228'
-        }
+          repeatPassword: 'Biboran228',
+        },
       };
       const expected = 'Password is not regex';
 
@@ -75,8 +75,8 @@ describe('validation', () => {
           email: 'vadim@gmail.com',
           nickname: 'tekkenthug',
           password: 'Biboran228',
-          repeatPassword: 'Biboran222'
-        }
+          repeatPassword: 'Biboran222',
+        },
       };
       const expected = 'Password is not equal';
 
@@ -84,7 +84,7 @@ describe('validation', () => {
 
       expect(result).toEqual(expected);
     });
-  })
+  });
 
   describe('isPair()', () => {
     test('should return true if all pair fields is valid', async () => {
@@ -94,8 +94,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: 12000,
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = true;
 
@@ -111,8 +111,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: 12000,
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = 'Model is empty';
 
@@ -128,8 +128,8 @@ describe('validation', () => {
           colorway: '',
           vendorCode: 'RX560',
           price: 12000,
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = 'Colorway is empty';
 
@@ -145,8 +145,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: '',
           price: 12000,
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = 'Vendor code is empty';
 
@@ -162,8 +162,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: '',
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = 'Price is empty';
 
@@ -179,8 +179,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: 'hello',
-          releaseDate: '2001-07-15'
-        }
+          releaseDate: '2001-07-15',
+        },
       };
       const expected = 'Price is not numeric';
 
@@ -196,8 +196,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: 12000,
-          releaseDate: ''
-        }
+          releaseDate: '',
+        },
       };
       const expected = 'Date is empty';
 
@@ -213,8 +213,8 @@ describe('validation', () => {
           colorway: 'Red Hat',
           vendorCode: 'RX560',
           price: 12000,
-          releaseDate: '09-08-2001'
-        }
+          releaseDate: '09-08-2001',
+        },
       };
       const expected = 'Date field is not date format';
 
@@ -222,5 +222,5 @@ describe('validation', () => {
 
       expect(result).toEqual(expected);
     });
-  })
-})
+  });
+});

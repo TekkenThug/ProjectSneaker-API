@@ -1,4 +1,4 @@
-import AdminService from "../services/admin/AdminService.js";
+import AdminService from '../services/admin/AdminService.js';
 
 class AdminController {
   async getSneakers(req, res) {
@@ -17,7 +17,7 @@ class AdminController {
 
       res.json('Application resolved successfully');
     } catch (e) {
-      res.send(500).json(e.message)
+      res.send(500).json(e.message);
     }
   }
 }

@@ -1,5 +1,5 @@
-import Sneaker from "../../models/Sneaker.js";
-import { prepareImageLink, serializeObjectId } from "../../../utils.js";
+import Sneaker from '../../models/Sneaker.js';
+import { prepareImageLink, serializeObjectId } from '../../../utils.js';
 
 class AdminService {
   async getNotApprovedSneakers() {
