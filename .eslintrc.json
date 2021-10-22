@@ -9,6 +9,7 @@
         "airbnb-base",
         "plugin:jsdoc/recommended"
     ],
+    "plugins": ["jest"],
     "parserOptions": {
         "parser": "babel-eslint"
     },
