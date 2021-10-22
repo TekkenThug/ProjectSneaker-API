@@ -21,6 +21,7 @@
         "no-param-reassign": "off",
         "prefer-destructuring": "off",
         "class-methods-use-this": 0,
+        "no-return-await": 0,
         "max-len": [
             "error",
             {
