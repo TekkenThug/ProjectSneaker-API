@@ -1,8 +1,15 @@
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
-import { generateAccessToken, checkAccessToken } from '../libs/jwt.js';
+import Token from '../models/Token.js';
+import { generateTokens, checkAccessToken } from '../libs/jwt.js';
 
 const SALT_ROUNDS = 10;
+
+const generatePayload = (user) => {
+  return {
+    role: user.permissionID,
+  };
+};
 
 class Auth {
   async register(data) {
@@ -28,11 +35,19 @@ class Auth {
 
       if (!match) throw new Error('Incorrect password');
 
-      return await generateAccessToken({
-        role: potentialUser.permissionID,
-      });
+      return await generateTokens(potentialUser._id.toString(), generatePayload(potentialUser));
     }
     throw new Error('User with this email not found');
+  }
+
+  async updateRefreshToken(refreshToken) {
+    const tokenRecord = await Token.findOne({ token: refreshToken });
+
+    if (!tokenRecord) throw new Error('Token is expired');
+
+    await Token.deleteOne({ token: refreshToken });
+
+    return await generateTokens(tokenRecord.userID, generatePayload(await User.findById(tokenRecord.userID)));
   }
 
   async checkUser(token) {

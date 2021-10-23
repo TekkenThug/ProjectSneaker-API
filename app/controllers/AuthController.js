@@ -21,6 +21,17 @@ class AuthController {
     }
   }
 
+  async updateTokens(req, res) {
+    try {
+      const { refreshToken } = req.body;
+      const newTokens = await Auth.updateRefreshToken(refreshToken);
+
+      res.json(newTokens);
+    } catch (e) {
+      res.status(500).json(e.message);
+    }
+  }
+
   async checkAuth(req, res, next) {
     try {
       const { token } = req.body;
