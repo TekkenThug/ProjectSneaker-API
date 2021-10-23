@@ -4,7 +4,7 @@ import validate, { isNewUser, isPair } from './app/middlewares/validation.js';
 /** Controllers */
 import AuthController from './app/controllers/AuthController.js';
 import SneakerController from './app/controllers/SneakerController.js';
-import AdminController from "./app/controllers/AdminController.js";
+import AdminController from './app/controllers/AdminController.js';
 
 const router = express.Router();
 
