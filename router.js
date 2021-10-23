@@ -1,4 +1,6 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+import jwtMiddleware from 'express-jwt';
 import validate, { isNewUser, isPair } from './app/middlewares/validation.js';
 
 /** Controllers */
@@ -6,16 +8,19 @@ import AuthController from './app/controllers/AuthController.js';
 import SneakerController from './app/controllers/SneakerController.js';
 import AdminController from './app/controllers/AdminController.js';
 
+dotenv.config();
 const router = express.Router();
+
+const optionsForJWTMiddleware = {
+  secret: process.env.API_JWT_TOKEN,
+  algorithms: ['HS256'],
+};
 
 /** Auth Routes */
 router.post('/auth/register', validate(isNewUser), AuthController.registerUser);
 router.post('/auth/login', AuthController.authentication);
 router.post('/auth/refresh', AuthController.updateTokens);
-router.post('/auth/logout', AuthController.logout);
-router.post('/auth/check-in', AuthController.checkAuth, (req, res) => {
-  res.status(200).json(res.locals.tokenData);
-});
+router.post('/auth/logout', jwtMiddleware(optionsForJWTMiddleware), AuthController.logout);
 
 /** Sneakers Routes */
 router.get(['/sneakers', '/sneakers/:id'], SneakerController.getSneakers);
