@@ -31,12 +31,17 @@ class Auth {
     });
 
     if (potentialUser) {
+      if (await Token.findOne({ userID: potentialUser._id.toString() })) {
+        throw new Error('User already login');
+      }
+
       const match = await bcrypt.compare(data.password, potentialUser.passwordHash);
 
       if (!match) throw new Error('Incorrect password');
 
       return await generateTokens(potentialUser._id.toString(), generatePayload(potentialUser));
     }
+
     throw new Error('User with this email not found');
   }
 
