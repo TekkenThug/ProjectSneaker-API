@@ -11,6 +11,10 @@ class AdminService {
   }
 
   async resolveSneakersApplication(id, resolve) {
+    const pairIsApproved = (await Sneaker.findById(id, 'isApproved')).isApproved;
+
+    if (pairIsApproved) throw new Error('Pair already confirmed');
+
     if (resolve) {
       await Sneaker.findByIdAndUpdate(id, {
         isApproved: true,
