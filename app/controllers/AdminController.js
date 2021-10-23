@@ -5,7 +5,7 @@ class AdminController {
     try {
       res.json(await AdminService.getNotApprovedSneakers());
     } catch (e) {
-      res.send(500).json(e.message);
+      res.status(500).json(e.message);
     }
   }
 
@@ -17,7 +17,7 @@ class AdminController {
 
       res.json('Application resolved successfully');
     } catch (e) {
-      res.send(500).json(e.message);
+      res.status(500).json(e.message);
     }
   }
 }
