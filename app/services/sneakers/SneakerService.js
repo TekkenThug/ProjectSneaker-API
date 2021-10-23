@@ -8,9 +8,9 @@ class SneakerService {
       const { model, limit } = searchParams;
 
       const sneakers = await Sneaker.find({
-        model: new RegExp(model, 'gi'),
+        model: model ? new RegExp(model, 'gi') : { $exists: true },
         isApproved: true,
-      }).limit(Number.parseInt(limit, 10));
+      }).limit(limit ? Number.parseInt(limit, 10) : 3);
 
       return prepareImageLink(sneakers);
     }
