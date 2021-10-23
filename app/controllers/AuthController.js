@@ -32,7 +32,7 @@ class AuthController {
 
   async logout(req, res) {
     try {
-      const { id: userID } = req.state.user;
+      const { id: userID } = req.user;
 
       await Auth.logout(userID);
 
