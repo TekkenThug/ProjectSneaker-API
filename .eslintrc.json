@@ -6,8 +6,8 @@
     },
     "extends": [
         "plugin:import/recommended",
-        "airbnb-base",
-        "plugin:jsdoc/recommended"
+        "plugin:jsdoc/recommended",
+        "airbnb-base"
     ],
     "plugins": ["jest"],
     "parserOptions": {
