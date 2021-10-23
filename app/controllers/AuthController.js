@@ -30,25 +30,12 @@ class AuthController {
     }
   }
 
-  async checkAuth(req, res, next) {
-    try {
-      const { token } = req.body;
-
-      if (token) {
-        res.locals.tokenData = await Auth.checkUser(req.body.token);
-        next();
-      } else {
-        res.status(403).json('Forbidden');
-      }
-    } catch (e) {
-      res.status(500).json(e.message);
-    }
-  }
-
   async logout(req, res) {
     try {
-      // TODO: fictive method
-      await Auth.checkUser();
+      const { id: userID } = req.state.user;
+
+      await Auth.logout(userID);
+
       res.json('Logout is successful');
     } catch (e) {
       res.status(500).json(e.message);
