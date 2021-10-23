@@ -17,7 +17,3 @@ export const generateTokens = async (id, payload) => {
     refreshToken: newRefreshToken,
   };
 };
-
-export const checkAccessToken = async (token) => {
-  return jwt.verify(token, process.env.API_JWT_TOKEN);
-};
