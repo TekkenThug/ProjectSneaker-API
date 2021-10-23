@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import Token from '../models/Token.js';
-import { generateTokens, checkAccessToken } from '../libs/jwt.js';
+import { generateTokens } from '../libs/jwt.js';
 
 const SALT_ROUNDS = 10;
 
@@ -55,14 +55,8 @@ class Auth {
     return await generateTokens(tokenRecord.userID, generatePayload(await User.findById(tokenRecord.userID)));
   }
 
-  async checkUser(token) {
-    const potentialTokenData = await checkAccessToken(token);
-
-    if (!potentialTokenData.role) throw new Error('Forbidden');
-
-    return {
-      role: potentialTokenData.role,
-    };
+  async logout(id) {
+    await Token.remove({ userID: id });
   }
 }
 
