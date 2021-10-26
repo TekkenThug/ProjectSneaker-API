@@ -26,8 +26,14 @@ class AuthController {
 
       res.json(newTokens);
     } catch (e) {
-      res.status(500).json(e.message);
+      res.status(500).json({ auth: false });
     }
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  async checkIn(err, req, res, next) {
+    if (err) res.json({ auth: false });
+    else res.json({ auth: true });
   }
 
   async logout(req, res) {
