@@ -19,6 +19,7 @@ const optionsForJWTMiddleware = {
 /** Auth Routes */
 router.post('/auth/register', validate(isNewUser), AuthController.registerUser);
 router.post('/auth/login', AuthController.authentication);
+router.post('/auth/check', jwtMiddleware(optionsForJWTMiddleware), AuthController.checkIn);
 router.post('/auth/refresh', AuthController.updateTokens);
 router.post('/auth/logout', jwtMiddleware(optionsForJWTMiddleware), AuthController.logout);
 
