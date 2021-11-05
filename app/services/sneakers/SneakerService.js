@@ -20,12 +20,12 @@ class SneakerService {
     return prepareImageLink(sneakers);
   }
 
-  async createSneakers(data, image) {
-    const imageName = saveFile(image);
-
-    data.releaseDate = formatDate(data.releaseDate);
-
-    await Sneaker.create({ ...data, picture: imageName });
+  async createSneakers(data) {
+    await Sneaker.create({
+      ...data,
+      releaseDate: formatDate(data.releaseDate),
+      picture: saveFile(data.picture),
+    });
   }
 
   async updateSneakers(id, data) {
