@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
-import routes from './router.js';
+import routes from './app/routes/index.js';
 
 dotenv.config();
 
