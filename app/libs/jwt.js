@@ -13,7 +13,7 @@ dotenv.config();
 
 /**
  * Returns object with jwt tokens pair
- * @param {string} id - user ID
+ * @param {string|number} id - user ID
  * @param {object} payload - payload for hashing into token
  * @returns {Promise<JWTPair>} - tokens
  */
