@@ -1,6 +1,6 @@
 import Sneaker from '../../models/Sneaker.js';
 import { saveFile } from '../../libs/file.js';
-import { formatDate, prepareImageLink } from '../../../utils.js';
+import { formatDate, prepareImageLink } from '../../utils.js';
 
 class SneakerService {
   async getSneakers(id, searchParams = {}) {
