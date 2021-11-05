@@ -56,8 +56,18 @@ class Auth {
     return await generateTokens(tokenRecord.userID, generatePayload(await User.findById(tokenRecord.userID)));
   }
 
+  async checkAuthStatus(id) {
+    const tokenRecord = await Token.findOne({ userID: id });
+
+    if (!tokenRecord) throw new Error('Invalid user');
+  }
+
   async logout(id) {
-    await Token.deleteOne({ userID: id });
+    const tokenRecord = await Token.findOne({ userID: id });
+
+    if (!tokenRecord) throw new Error('User is not exist');
+
+    await tokenRecord.deleteOne();
   }
 }
 
