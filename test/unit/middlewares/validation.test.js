@@ -1,7 +1,7 @@
 import {
   isNewUser,
   isPair,
-} from './validation.js';
+} from '../../../app/middlewares/validation.js';
 
 describe('validation', () => {
   describe('isNewUser()', () => {
