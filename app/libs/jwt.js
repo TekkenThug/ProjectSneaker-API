@@ -5,6 +5,18 @@ import Token from '../models/Token.js';
 
 dotenv.config();
 
+/**
+ * @typedef {object} JWTPair
+ * @property {string} token - access token
+ * @property {string} refreshToken - refresh token
+ */
+
+/**
+ * Returns object with jwt tokens pair
+ * @param {string} id - user ID
+ * @param {object} payload - payload for hashing into token
+ * @returns {Promise<JWTPair>} - tokens
+ */
 export const generateTokens = async (id, payload) => {
   const newRefreshToken = uuid();
   await Token.create({
