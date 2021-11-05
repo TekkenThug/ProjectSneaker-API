@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
-import mongoose from "mongoose";
 import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
-import routes from './app/routes/index.js';
+import routes from './routes/index.js';
 
 dotenv.config();
 
@@ -15,15 +14,4 @@ app.use(express.static('public'));
 app.use(fileUpload({}));
 app.use('/api', routes);
 
-const startApp = async () => {
-    await mongoose.connect(process.env.API_MONGO_CONNECT);
-
-    app.listen(process.env.API_PORT || 3000, () => {
-        console.log('Hello, server is running!')
-    });
-}
-
-await startApp();
-
-
-
+export default app;
