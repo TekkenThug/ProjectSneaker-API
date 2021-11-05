@@ -11,7 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-app.use(fileUpload({}));
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp/',
+}));
 app.use('/api', routes);
 
 export default app;
