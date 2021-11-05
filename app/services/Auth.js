@@ -7,6 +7,7 @@ const SALT_ROUNDS = 10;
 
 const generatePayload = (user) => {
   return {
+    id: user._id.toString(),
     role: user.permissionID,
   };
 };
@@ -56,7 +57,7 @@ class Auth {
   }
 
   async logout(id) {
-    await Token.remove({ userID: id });
+    await Token.deleteOne({ userID: id });
   }
 }
 
