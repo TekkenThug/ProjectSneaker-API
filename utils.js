@@ -16,17 +16,24 @@ export const formatDate = (date, options = {}) => {
 };
 
 /**
- * Returns sneakers pairs with full image path
+ * Returns data with full image path
  *
- * @param {Array} sneakers - pairs for creating image paths
- * @returns {Array} - pairs with image path
+ * @param {Array | object} data - pairs for creating image paths
+ * @param {string} key - image key into data
+ * @returns {Array | object} - pairs with image path
  */
-export const prepareImageLink = (sneakers) => {
-  sneakers.forEach((pair) => {
-    pair.picture = `${generatePathForStatic()}/${pair.picture}`;
-  });
+export const prepareImageLink = (data, key = 'picture') => {
+  if (data instanceof Array) {
+    data.forEach((pair) => {
+      pair[key] = `${generatePathForStatic()}/${pair[key]}`;
+    });
 
-  return sneakers;
+    return data;
+  }
+
+  data[key] = `${generatePathForStatic()}/${data[key]}`;
+
+  return data;
 };
 
 /**
