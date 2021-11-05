@@ -1,11 +1,19 @@
-import { v4 as uuid } from 'uuid';
 import * as path from 'path';
+import fs from 'fs';
+import { generateUniqueName } from '../utils.js';
 
-export const saveFile = (file) => {
-  const fileName = `${uuid()}${path.extname(file.name)}`;
-  const filePath = path.resolve('public', fileName);
+/**
+ * Save file in public directory
+ * and return path to the picture
+ * @param {object} file - input file
+ * @param {string} pathToFolder - path to folder for save
+ * @returns {string} - name of saved file
+ */
+export const saveFile = (file, ...pathToFolder) => {
+  const fileName = `${generateUniqueName()}${path.extname(file.name)}`;
+  const filePath = path.resolve('public', ...pathToFolder, fileName);
 
-  file.mv(filePath);
+  fs.renameSync(file.tempFilePath, filePath);
 
   return fileName;
 };
